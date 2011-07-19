@@ -1344,12 +1344,12 @@ void DisplayObject::setOnStage(bool staged)
 		if(onStage==true && isConstructed() && hasEventListener("addedToStage"))
 		{
 			this->incRef();
-			getVm()->addEvent(_MR(this),_MR(Class<Event>::getInstanceS("addedToStage")));
+			ABCVm::publicHandleEvent(_MR(this),_MR(Class<Event>::getInstanceS("addedToStage")));
 		}
 		else if(onStage==false && hasEventListener("removedFromStage"))
 		{
 			this->incRef();
-			getVm()->addEvent(_MR(this),_MR(Class<Event>::getInstanceS("removedFromStage")));
+			ABCVm::publicHandleEvent(_MR(this),_MR(Class<Event>::getInstanceS("removedFromStage")));
 		}
 	}
 }
