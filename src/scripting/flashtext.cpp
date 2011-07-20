@@ -59,6 +59,8 @@ void TextField::sinit(Class_base* c)
 	c->setDeclaredMethodByQName("width","",Class<IFunction>::getFunction(TextField::_setWidth),SETTER_METHOD,true);
 	c->setDeclaredMethodByQName("height","",Class<IFunction>::getFunction(TextField::_getHeight),GETTER_METHOD,true);
 	c->setDeclaredMethodByQName("height","",Class<IFunction>::getFunction(TextField::_setHeight),SETTER_METHOD,true);
+	c->setDeclaredMethodByQName("textHeight","",Class<IFunction>::getFunction(TextField::_getTextHeight),GETTER_METHOD,true);
+	c->setDeclaredMethodByQName("textWidth","",Class<IFunction>::getFunction(TextField::_getTextWidth),GETTER_METHOD,true);
 	c->setDeclaredMethodByQName("text","",Class<IFunction>::getFunction(TextField::_getText),GETTER_METHOD,true);
 	c->setDeclaredMethodByQName("text","",Class<IFunction>::getFunction(TextField::_setText),SETTER_METHOD,true);
 	c->setDeclaredMethodByQName("appendText","",Class<IFunction>::getFunction(TextField:: appendText),NORMAL_METHOD,true);
@@ -114,6 +116,20 @@ ASFUNCTIONBODY(TextField,_setHeight)
 	assert_and_throw(argslen==1);
 	th->height=args[0]->toInt();
 	return NULL;
+}
+
+ASFUNCTIONBODY(TextField,_getTextWidth)
+{
+	// TODO: this is wrong
+	TextField* th=Class<TextField>::cast(obj);
+	return abstract_i(th->width);
+}
+
+ASFUNCTIONBODY(TextField,_getTextHeight)
+{
+	// TODO: this is wrong
+	TextField* th=Class<TextField>::cast(obj);
+	return abstract_i(th->height);
 }
 
 ASFUNCTIONBODY(TextField,_getText)
