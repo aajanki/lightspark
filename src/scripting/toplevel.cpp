@@ -3247,7 +3247,8 @@ ASObject* SyntheticFunction::call(ASObject* obj, ASObject* const* args, uint32_t
 					cc->runtime_stack_clear();
 					cc->runtime_stack_push(excobj);
 					cc->scope_stack.clear();
-					cc->initialScopeStack=0;
+					cc->scope_stack=func_scope;
+					cc->initialScopeStack=func_scope.size();
 					break;
 				}
 			}
