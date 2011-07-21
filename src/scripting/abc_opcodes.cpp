@@ -1571,14 +1571,15 @@ void ABCVm::getLex(call_context* th, int n)
 		if(it->object==tl.cur_this)
 			tl.cur_this->resetLevel();
 
-		//Skip implementation
-		ASObject* tmpo=it->object->getVariableByMultiname(*name, !it->considerDynamic);
+		bool found=it->object->hasPropertyByMultiname(*name, it->considerDynamic);
+
 		if(it->object==tl.cur_this)
 			tl.cur_this->setLevel(tl.cur_level);
 
-		o=tmpo;
-		if(o)
+		if(found)
 		{
+			o=it->object->getVariableByMultiname(*name, !it->considerDynamic);
+			assert(o);
 			target=it->object.getPtr();
 			break;
 		}
